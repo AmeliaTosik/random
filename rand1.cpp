@@ -27,7 +27,7 @@ void sort_babelkowe(int r, int tab[]) {
     };
 };
  
-void scal(int tab[], int p, int q, int r) {
+void scal(int p, int q, int r, int tab[]) {
     int n1 = q - p + 1;
     int n2 = r - q;
  
@@ -73,7 +73,7 @@ void scal(int tab[], int p, int q, int r) {
     };
 };
  
-void sort_scalanie(int tab[], int l, int r) {
+void sort_scalanie(int l, int r, int tab[]) {
     if (l < r) {
         int m = l + (r - l) / 2;
         
@@ -82,6 +82,27 @@ void sort_scalanie(int tab[], int l, int r) {
         
         scal(tab, l, m, r);
     };
+};
+
+void sort_wstrzasanie(int r, int tab[]){
+    int i, j, k;
+	for(i = 0; i < r;) {
+		for(j = i+1; j < r; j++) {
+			if(tab[j] < tab[j-1]) {
+				swap(tab[j], tab[j-1])
+            };
+        };
+
+		r--;
+ 
+		for(k = r-1; k > i; k--) {
+			if(tab[k] < tab[k-1]) {
+				swap(tab[k], tab[k-1])
+            };
+		};
+
+		i++;
+	};
 };
  
 int main()
@@ -104,6 +125,6 @@ int main()
     
     cout<<endl;
     
-    sort_scalanie(tab, 0, rozmiar);
+    sort_scalanie(0, rozmiar, tab);
     wyswietl(rozmiar,tab);
 }
