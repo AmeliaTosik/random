@@ -3,7 +3,7 @@
  
 using namespace std;
  
-void wypelnij(int r, int tab[]) {
+void wypelnij(int tab[], int r) {
     srand((unsigned) time(NULL));
     for(int i = 0; i <= r; i++) {
         int ran = rand() % 25 + 1;
@@ -11,13 +11,13 @@ void wypelnij(int r, int tab[]) {
     };
 };
 
-void wyswietl(int r, int tab[]) {
+void wyswietl(int tab[], int r) {
     for(int i = 0; i <= r; i++) {
         cout<<tab[i]<<" ";
     };
 };
  
-void sort_babelkowe(int r, int tab[]) {
+void sort_babelkowe(int tab[], int r) {
     for(int i=0; i<r; i++) {
         for(int j=0; j<r-i; j++) {
             if(tab[j]>tab[j+1]) {
@@ -27,7 +27,7 @@ void sort_babelkowe(int r, int tab[]) {
     };
 };
  
-void scal(int p, int q, int r, int tab[]) {
+void scal(int tab[], int p, int q, int r) {
     int n1 = q - p + 1;
     int n2 = r - q;
  
@@ -73,7 +73,7 @@ void scal(int p, int q, int r, int tab[]) {
     };
 };
  
-void sort_scalanie(int l, int r, int tab[]) {
+void sort_scalanie(int tab[], int l, int r) {
     if (l < r) {
         int m = l + (r - l) / 2;
         
@@ -84,7 +84,7 @@ void sort_scalanie(int l, int r, int tab[]) {
     };
 };
 
-void sort_wstrzasanie(int r, int tab[]){
+void sort_wstrzasanie(int tab[], int r) {
     int i, j, k;
 	for(i = 0; i < r;) {
 		for(j = i+1; j < r; j++) {
@@ -104,27 +104,53 @@ void sort_wstrzasanie(int r, int tab[]){
 		i++;
 	};
 };
+
+void sort_szybkie(int tab[], int l, int r) {
+    int i = l;
+    int j = r;
+    int x = tab[(l + r) / 2];
+
+    do {
+        while(tab[i] < x) {
+            i++;
+        };
+       
+        while(tab[j] > x) {
+            j--;
+        };
+       
+        if(i <= j) {
+            swap(tab[i], tab[j]);
+            i++;
+            j--;
+        };
+    } while(i <= j);
+   
+    if(l < j) sort_szybkie(tab, l, j);
+   
+    if(r > i) sort_szybkie(tab, i, r);
+};
  
 int main()
 {
     constexpr int rozmiar = 12;
     int tab[rozmiar];
     
-    wypelnij(rozmiar,tab);
-    wyswietl(rozmiar,tab);
+    wypelnij(tab, rozmiar);
+    wyswietl(tab, rozmiar);
     
     cout<<endl;
     
-    sort_babelkowe(rozmiar, tab);
-    wyswietl(rozmiar,tab);
+    sort_babelkowe(tab, rozmiar);
+    wyswietl(tab, rozmiar);
 
     cout<<endl;
 
-    wypelnij(rozmiar,tab);
-    wyswietl(rozmiar,tab);
+    wypelnij(tab, rozmiar);
+    wyswietl(tab, rozmiar);
     
     cout<<endl;
     
-    sort_scalanie(0, rozmiar, tab);
-    wyswietl(rozmiar,tab);
+    sort_scalanie(tab, 0, rozmiar);
+    wyswietl(tab, rozmiar);
 }
