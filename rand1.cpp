@@ -130,6 +130,22 @@ void sort_szybkie(int tab[], int l, int r) {
    
     if(r > i) sort_szybkie(tab, i, r);
 };
+
+void sort_wstawianie(int tab[], int r) {
+    int i, j, x;
+    
+    for(i = 1; i <= r; i++) {
+        x = tab[i];
+        j = i - 1;
+
+        while(j >= 0 && tab[j] > x) {
+            tab[j + 1] = tab[j];
+            j = j - 1;
+        };
+        
+        tab[j + 1] = x;
+    };
+};
  
 int main()
 {
@@ -138,9 +154,7 @@ int main()
     
     wypelnij(tab, rozmiar);
     wyswietl(tab, rozmiar);
-    
     cout<<endl;
-    
     sort_babelkowe(tab, rozmiar);
     wyswietl(tab, rozmiar);
 
@@ -148,9 +162,31 @@ int main()
 
     wypelnij(tab, rozmiar);
     wyswietl(tab, rozmiar);
+    cout<<endl;
+    sort_scalanie(tab, 0, rozmiar);
+    wyswietl(tab, rozmiar);
+
+    cout<<endl;
+
+    wypelnij(tab, rozmiar);
+    wyswietl(tab, rozmiar);
+    cout<<endl;
+    sort_wstrzasanie(tab, 0, rozmiar);
+    wyswietl(tab, rozmiar);
     
     cout<<endl;
-    
-    sort_scalanie(tab, 0, rozmiar);
+
+    wypelnij(tab, rozmiar);
+    wyswietl(tab, rozmiar);
+    cout<<endl;
+    sort_szybkie(tab, 0, rozmiar);
+    wyswietl(tab, rozmiar);
+
+    cout<<endl;
+
+    wypelnij(tab, rozmiar);
+    wyswietl(tab, rozmiar);
+    cout<<endl;
+    sort_wstawianie(tab, 0, rozmiar);
     wyswietl(tab, rozmiar);
 }
