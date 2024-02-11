@@ -146,6 +146,17 @@ void sort_wstawianie(int tab[], int r) {
         tab[j + 1] = x;
     };
 };
+
+int wysz_liniowe(int tab[], int r, int x) {
+    int index = -1;
+    for(int i=0; i<=r; i++) {
+        if(tab[i] == x) {
+            index = i;
+            break;
+        };
+    };
+    return index;
+};
  
 int main()
 {
