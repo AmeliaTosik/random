@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdlib>
+#include <bits/stdc++.h>
  
 using namespace std;
  
@@ -203,6 +204,35 @@ int wysz_interpolacyjne(int tab[], int pocz, int kon, int x) {
     
     return -1;
 };
+
+int wysz_skokowe(int tab[], int r, int x) {
+    
+    int step = sqrt(r);
+    int index = 0;
+    
+    while(tab[min(step, r)-1] < x) {
+        index = step;
+        step += sqrt(r);
+        
+        if (index >= r){
+            return -1;
+        };
+    };
+ 
+    while(tab[index] < x) {
+        index++;
+
+        if(index == min(step, r)) {
+            return -1;
+        };
+    };
+
+    if(tab[index] == x) {
+        return index;
+    };
+ 
+    return -1;
+};
  
 int main()
 {
@@ -246,4 +276,22 @@ int main()
     cout<<endl;
     sort_wstawianie(tab, 0, rozmiar);
     wyswietl(tab, rozmiar);
-}
+
+
+
+    int liczba1 = 10;
+    int liczba2 = 15;
+    int tab2[rozmiar] = {1, 4, 8, 9, 10, 13, 14, 17, 19, 20, 23, 24};
+    
+    cout<<wysz_liniowe(tab2, rozmiar, liczba1);
+    cout<<wysz_liniowe(tab2, rozmiar, liczba2);
+
+    cout<<wysz_binarne(tab2, 0, rozmiar, liczba1);
+    cout<<wysz_binarne(tab2, 0, rozmiar, liczba2);
+
+    cout<<wysz_interpolacyjne(tab2, 0, rozmiar, liczba1);
+    cout<<wysz_interpolacyjne(tab2, 0, rozmiar, liczba2);
+
+    cout<<wysz_skokowe(tab2, rozmiar, liczba1);
+    cout<<wysz_skokowe(tab2, rozmiar, liczba2);
+};
