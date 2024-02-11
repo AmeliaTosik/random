@@ -149,12 +149,36 @@ void sort_wstawianie(int tab[], int r) {
 
 int wysz_liniowe(int tab[], int r, int x) {
     int index = -1;
+
     for(int i=0; i<=r; i++) {
         if(tab[i] == x) {
             index = i;
             break;
         };
     };
+
+    return index;
+};
+
+int wysz_binarne(int tab[], int l, int r, int x) {
+    int index = -1;
+
+    while(l <= r) {
+        int i = l +(r - l) / 2;
+
+        if(tab[i] == x) {
+            index = i;
+            break;
+        };
+        
+        if(tab[i] < x) {
+            l = i + 1;
+        }
+        else {
+            r = i - 1;
+        };
+    };
+
     return index;
 };
  
