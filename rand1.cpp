@@ -160,11 +160,11 @@ int wysz_liniowe(int tab[], int r, int x) {
     return index;
 };
 
-int wysz_binarne(int tab[], int l, int r, int x) {
+int wysz_binarne(int tab[], int pocz, int kon, int x) {
     int index = -1;
 
-    while(l <= r) {
-        int i = l +(r - l) / 2;
+    while(pocz <= kon) {
+        int i = pocz +(kon - pocz) / 2;
 
         if(tab[i] == x) {
             index = i;
@@ -172,14 +172,36 @@ int wysz_binarne(int tab[], int l, int r, int x) {
         };
         
         if(tab[i] < x) {
-            l = i + 1;
+            pocz = i + 1;
         }
         else {
-            r = i - 1;
+            kon = i - 1;
         };
     };
 
     return index;
+};
+
+int wysz_interpolacyjne(int tab[], int pocz, int kon, int x) {  
+    int index = -1; 
+    int koniec = kon - 1;
+  
+    while (pocz <= koniec && tab[pocz] <= x && x <= tab[koniec]) { 
+        
+        index = pocz + ((x - tab[pocz]) * (koniec - pocz)) / (tab[koniec] - tab[pocz]);
+        
+        if(tab[index] == x) {
+            return index;
+        }
+        else if(tab[index] < x) {
+            pocz = index + 1;
+        }
+        else {
+            koniec = index - 1;
+        };
+    };
+    
+    return -1;
 };
  
 int main()
